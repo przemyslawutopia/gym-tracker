@@ -1,0 +1,409 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #111;
+  --gray: #888;
+  --light-gray: #f2f2f2;
+  --border: #e0e0e0;
+  --accent: #111;
+  --radius: 10px;
+  --font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+}
+
+html, body {
+  font-family: var(--font);
+  font-size: 16px;
+  color: var(--black);
+  background: #fff;
+  min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hidden { display: none !important; }
+
+/* ── Layout ── */
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+}
+
+.screen-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.screen-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  flex: 1;
+  line-height: 1.2;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  flex: 1;
+}
+
+/* ── Back button ── */
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px 8px 4px 0;
+  color: var(--black);
+  line-height: 1;
+}
+
+/* ── Day Select ── */
+.day-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.day-btn {
+  background: var(--light-gray);
+  border: none;
+  border-radius: var(--radius);
+  padding: 24px 16px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.1s;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.day-btn:active { background: #e0e0e0; }
+
+.day-label {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.day-last {
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+
+/* ── Export ── */
+.screen-footer {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.export-btn {
+  width: 100%;
+  padding: 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--gray);
+}
+.export-btn:active { background: var(--light-gray); }
+
+/* ── Exercise List ── */
+.exercise-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.exercise-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  gap: 8px;
+}
+.exercise-item:active { background: var(--light-gray); }
+
+.ex-name {
+  font-size: 1rem;
+  font-weight: 500;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ss-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: var(--black);
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.ex-sets {
+  font-size: 0.85rem;
+  color: var(--gray);
+  white-space: nowrap;
+}
+
+/* ── Exercise Log ── */
+.log-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Trend panel */
+.trend-panel {
+  background: var(--light-gray);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+}
+
+.trend-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--gray);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.trend-row {
+  display: flex;
+  gap: 12px;
+  font-size: 0.82rem;
+  padding: 2px 0;
+  align-items: baseline;
+}
+
+.trend-date {
+  color: var(--gray);
+  min-width: 52px;
+  font-size: 0.75rem;
+}
+
+.trend-sets {
+  font-weight: 500;
+  flex: 1;
+}
+
+.trend-empty {
+  font-size: 0.82rem;
+  color: var(--gray);
+}
+
+/* Superset label */
+.ss-label {
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gray);
+  font-weight: 600;
+}
+
+/* Input block */
+.input-block {
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.input-block-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.input-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gray);
+  flex: 1;
+}
+
+.inp {
+  width: 100%;
+  padding: 10px 8px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-family: var(--font);
+  text-align: center;
+  background: #fff;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.inp:focus { outline: none; border-color: var(--black); }
+
+.log-btn {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: var(--black);
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+}
+.log-btn:active { background: #444; }
+
+/* Set list */
+.set-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.set-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 8px;
+}
+
+.del-set-btn {
+  background: none;
+  border: none;
+  color: var(--gray);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.del-set-btn:active { color: #c00; }
+
+.no-sets {
+  font-size: 0.82rem;
+  color: var(--gray);
+  padding: 4px 0;
+}
+
+/* Notes */
+.notes-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notes-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gray);
+}
+
+.notes-input {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  resize: vertical;
+  background: #fff;
+}
+.notes-input:focus { outline: none; border-color: var(--black); }
+
+/* Stopwatch */
+.stopwatch {
+  text-align: center;
+  padding: 20px 0 8px;
+}
+
+.sw-display {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 14px;
+}
+
+.sw-btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.sw-btn {
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: var(--font);
+}
+.sw-btn:active { background: var(--light-gray); }
+.sw-reset { color: var(--gray); }
+
+/* ── Keyboard toolbar ── */
+#kb-toolbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: #d1d3d9;
+  border-top: 1px solid #b0b3ba;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0;
+  padding: 6px 8px;
+}
+
+#kb-toolbar button {
+  background: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 18px;
+  font-size: 0.95rem;
+  font-family: var(--font);
+  cursor: pointer;
+  margin-left: 8px;
+  color: var(--black);
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+}
+#kb-toolbar button:active { background: #e8e8e8; }
+
+/* ── Number input spinner hide ── */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+input[type=number] { -moz-appearance: textfield; }
