@@ -1,4 +1,4 @@
-const CACHE = 'gymtracker-v1';
+const CACHE = 'gymtracker-v2';
 const ASSETS = [
   '/',
   '/index.html',
@@ -6,6 +6,8 @@ const ASSETS = [
   '/js/plan.js',
   '/js/storage.js',
   '/js/stopwatch.js',
+  '/js/kbToolbar.js',
+  '/js/globalTimer.js',
   '/js/export.js',
   '/js/app.js',
   '/js/screens/daySelect.js',
