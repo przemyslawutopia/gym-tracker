@@ -23,10 +23,14 @@ html, body {
 .hidden { display: none !important; }
 
 /* ── Layout ── */
+:root {
+  --timer-bar-h: 64px;
+}
+
 #app {
   max-width: 480px;
   margin: 0 auto;
-  padding: 0 16px 40px;
+  padding: 0 16px calc(var(--timer-bar-h) + 24px);
 }
 
 .screen-header {
@@ -372,6 +376,58 @@ html, body {
 }
 .sw-btn:active { background: var(--light-gray); }
 .sw-reset { color: var(--gray); }
+
+/* ── Global Timer Bar ── */
+#global-timer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--timer-bar-h);
+  background: #fff;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  padding-bottom: env(safe-area-inset-bottom);
+  z-index: 100;
+  max-width: 100%;
+}
+
+#gt-display {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+  min-width: 64px;
+}
+
+.gt-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.gt-btns button {
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-family: var(--font);
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  -webkit-tap-highlight-color: transparent;
+}
+.gt-btns button:active { background: var(--light-gray); }
+
+#gt-start {
+  background: var(--black) !important;
+  color: #fff;
+  border-color: var(--black) !important;
+}
+#gt-start:active { background: #444 !important; }
+
+#gt-reset { color: var(--gray); }
 
 /* ── Keyboard toolbar ── */
 #kb-toolbar {

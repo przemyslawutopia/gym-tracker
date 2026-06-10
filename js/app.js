@@ -27,6 +27,7 @@ const App = (() => {
 
   function init() {
     KbToolbar.init();
+    GlobalTimer.init();
     navigateTo('day-select');
   }
 

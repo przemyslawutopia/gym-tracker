@@ -106,35 +106,13 @@ const ExerciseLogScreen = (() => {
 
       renderSetList(exId);
 
-      // Auto-start stopwatch on first set
-      if (nextIndex === 0 && !Stopwatch.isRunning()) {
-        Stopwatch.reset();
-        const display = document.getElementById('sw-display');
-        Stopwatch.start(t => { if (display) display.textContent = t; });
-        updateSwButtons();
-      }
     });
-  }
-
-  function updateSwButtons() {
-    const startBtn = document.getElementById('sw-start');
-    const stopBtn = document.getElementById('sw-stop');
-    if (!startBtn || !stopBtn) return;
-    if (Stopwatch.isRunning()) {
-      startBtn.style.display = 'none';
-      stopBtn.style.display = 'inline-block';
-    } else {
-      startBtn.style.display = 'inline-block';
-      stopBtn.style.display = 'none';
-    }
   }
 
   function render(state) {
     currentState = state;
     const { day, group } = state;
     const exercises = group.exercises;
-
-    Stopwatch.reset();
 
     const container = document.getElementById('exercise-log-screen');
     const isSS = group.type === 'superset';
@@ -168,14 +146,6 @@ const ExerciseLogScreen = (() => {
           `).join('')}
         </div>
 
-        <div class="stopwatch">
-          <div id="sw-display" class="sw-display">0:00</div>
-          <div class="sw-btns">
-            <button id="sw-start" class="sw-btn">Start</button>
-            <button id="sw-stop" class="sw-btn" style="display:none">Stop</button>
-            <button id="sw-reset" class="sw-btn sw-reset">Reset</button>
-          </div>
-        </div>
       </div>
     `;
 
@@ -199,24 +169,8 @@ const ExerciseLogScreen = (() => {
       });
     });
 
-    // Stopwatch
-    document.getElementById('sw-start').addEventListener('click', () => {
-      const display = document.getElementById('sw-display');
-      Stopwatch.start(t => { if (display) display.textContent = t; });
-      updateSwButtons();
-    });
-    document.getElementById('sw-stop').addEventListener('click', () => {
-      Stopwatch.stop();
-      updateSwButtons();
-    });
-    document.getElementById('sw-reset').addEventListener('click', () => {
-      const display = document.getElementById('sw-display');
-      Stopwatch.reset(t => { if (display) display.textContent = t; });
-      updateSwButtons();
-    });
 
     document.getElementById('back-to-list').addEventListener('click', () => {
-      Stopwatch.reset();
       App.navigateTo('exercise-list', { day });
     });
   }
