@@ -8,9 +8,14 @@ const ExerciseLogScreen = (() => {
     const defWeight = lastSet ? lastSet.weight : '';
     const defReps = lastSet ? lastSet.reps : '';
     const defRir = lastSet != null && lastSet.rir != null ? lastSet.rir : '';
+    const activeId = Storage.getActiveVariant(ex, currentState.day);
+    const vEntry = activeId && ex.variantKey
+      ? (VARIANTS[ex.variantKey] || []).find(v => v.id === activeId)
+      : null;
     return `
       <div class="input-block" data-exid="${ex.id}" data-exname="${ex.name}">
         <h3 class="input-block-title">${ex.name}</h3>
+        ${vEntry ? `<p class="input-block-variant">${vEntry.name}</p>` : ''}
         <div class="input-row">
           <label>kg<input type="text" class="inp inp-weight" inputmode="decimal" enterkeyhint="next" value="${defWeight}" placeholder="0"></label>
           <label>reps<input type="text" class="inp inp-reps" inputmode="decimal" enterkeyhint="next" value="${defReps}" placeholder="0"></label>
@@ -81,30 +86,35 @@ const ExerciseLogScreen = (() => {
     rir.addEventListener('keydown',    e => { if (e.key === 'Enter') { e.preventDefault(); rir.blur(); } });
   }
 
-  function attachLogButton(exId, exName) {
-    const btn = document.querySelector(`.log-btn[data-exid="${exId}"]`);
+  function attachLogButton(ex) {
+    const btn = document.querySelector(`.log-btn[data-exid="${ex.id}"]`);
     if (!btn) return;
     btn.addEventListener('click', () => {
-      const block = document.querySelector(`.input-block[data-exid="${exId}"]`);
+      const block = document.querySelector(`.input-block[data-exid="${ex.id}"]`);
       const weight = parseFloat(block.querySelector('.inp-weight').value.replace(',', '.'));
       const reps = parseFloat(block.querySelector('.inp-reps').value.replace(',', '.'));
       const rir = parseInt(block.querySelector('.inp-rir').value);
       if (isNaN(weight) || isNaN(reps)) { alert('Enter weight and reps.'); return; }
 
-      const history = Storage.getHistory(exId, 50);
+      const history = Storage.getHistory(ex.id, 50);
       const todaySess = history.find(s => s.date === today);
       const nextIndex = todaySess ? todaySess.sets.filter(Boolean).length : 0;
 
-      Storage.saveSet(today, currentState.day, exId, exName, nextIndex, {
-        weight, reps, rir: isNaN(rir) ? null : rir
-      });
+      const variantInfo = ex.variantKey ? {
+        variantUsed:    Storage.getActiveVariant(ex, currentState.day),
+        plannedVariant: Storage.getPlanVariantOverride(currentState.day, ex.id) || ex.defaultVariant,
+      } : null;
+
+      Storage.saveSet(today, currentState.day, ex.id, ex.name, nextIndex, {
+        weight, reps, rir: isNaN(rir) ? null : rir,
+      }, variantInfo);
 
       // Pre-fill next set from what was just logged
       block.querySelector('.inp-weight').value = weight;
       block.querySelector('.inp-reps').value = reps;
       block.querySelector('.inp-rir').value = isNaN(rir) ? '' : rir;
 
-      renderSetList(exId);
+      renderSetList(ex.id);
 
     });
   }
@@ -153,8 +163,8 @@ const ExerciseLogScreen = (() => {
     exercises.forEach(ex => renderSetList(ex.id));
 
     // Wire log buttons, field chaining, and keyboard toolbar
-    exercises.forEach((ex, i) => {
-      attachLogButton(ex.id, ex.name);
+    exercises.forEach(ex => {
+      attachLogButton(ex);
       attachFieldChaining(ex.id);
     });
 
