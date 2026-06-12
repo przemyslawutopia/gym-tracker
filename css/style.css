@@ -99,6 +99,213 @@ html, body {
   color: var(--gray);
 }
 
+/* ── Home screen ── */
+.home-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.home-tile {
+  background: var(--light-gray);
+  border: none;
+  border-radius: var(--radius);
+  padding: 32px 20px 24px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.1s;
+  -webkit-tap-highlight-color: transparent;
+}
+.home-tile:active { background: #e0e0e0; }
+
+.home-tile-label {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.home-tile-sub {
+  font-size: 0.78rem;
+  color: var(--gray);
+}
+
+/* ── Weight popup ── */
+.wp-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 12px;
+}
+
+.wp-inp {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: -0.5px;
+  flex: 1;
+  padding: 12px 8px;
+}
+
+.wp-unit {
+  font-size: 1rem;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.wp-note {
+  margin-bottom: 4px;
+}
+
+.wp-actions {
+  margin-top: 4px;
+}
+
+/* ── Weight log screen ── */
+.wl-body {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.w-today-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.w-today-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--gray);
+  font-weight: 600;
+}
+
+.w-entry-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wl-inp {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-align: center;
+  flex: 1;
+  padding: 12px 8px;
+}
+
+.w-unit {
+  font-size: 1rem;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.wl-note { }
+
+/* ── 7-day strip ── */
+.w7-strip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.w7-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 2px;
+  border-radius: 6px;
+  background: var(--light-gray);
+}
+
+.w7-cell--missing {
+  background: #FEF0ED;
+}
+
+.w7-cell--today {
+  outline: 1.5px solid var(--black);
+}
+
+.w7-date {
+  font-size: 0.6rem;
+  color: var(--gray);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.w7-val {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.w7-cell--missing .w7-val {
+  color: #C0654A;
+  font-weight: 700;
+}
+
+/* ── Weekly history ── */
+.wh-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wh-title {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--gray);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.wh-row {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 8px;
+  font-size: 0.88rem;
+}
+
+.wh-row--current {
+  font-weight: 600;
+}
+
+.wh-range {
+  flex: 1;
+  color: var(--gray);
+  font-size: 0.82rem;
+}
+
+.wh-avg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.wh-trend {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.wh-trend--up   { color: #C0654A; }
+.wh-trend--down { color: #4A8C5C; }
+
+.wh-days {
+  color: var(--gray);
+  font-size: 0.78rem;
+  min-width: 28px;
+  text-align: right;
+}
+
 /* ── Menu button ── */
 .menu-btn {
   background: none;

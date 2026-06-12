@@ -145,10 +145,76 @@ const Storage = (() => {
     );
   }
 
+  // ── Weight ───────────────────────────────────────────────────────────────
+
+  const WEIGHT_KEY = 'gymtracker_weight';
+
+  function loadWeight() {
+    try { return JSON.parse(localStorage.getItem(WEIGHT_KEY)) || {}; } catch { return {}; }
+  }
+
+  function saveWeight(date, kg, note) {
+    const data = loadWeight();
+    data[date] = { kg: parseFloat(kg), note: note || '' };
+    localStorage.setItem(WEIGHT_KEY, JSON.stringify(data));
+  }
+
+  function getWeight(date) {
+    return loadWeight()[date] || null;
+  }
+
+  function getWeightRange(days) {
+    const data = loadWeight();
+    const result = [];
+    for (let i = days - 1; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const dateStr = d.toISOString().slice(0, 10);
+      result.push({ date: dateStr, entry: data[dateStr] || null });
+    }
+    return result;
+  }
+
+  function getWeightWeeklyAvgs(weeks) {
+    const data = loadWeight();
+    const result = [];
+    for (let w = weeks - 1; w >= 0; w--) {
+      const days = [];
+      for (let d = 6; d >= 0; d--) {
+        const dt = new Date();
+        dt.setDate(dt.getDate() - w * 7 - d);
+        const dateStr = dt.toISOString().slice(0, 10);
+        days.push({ date: dateStr, entry: data[dateStr] || null });
+      }
+      const filled = days.filter(d => d.entry);
+      const avg = filled.length
+        ? filled.reduce((s, d) => s + d.entry.kg, 0) / filled.length
+        : null;
+      result.push({ days, avg, filled: filled.length });
+    }
+    return result;
+  }
+
+  function getWeightAllFlat() {
+    return Object.entries(loadWeight())
+      .map(([date, e]) => ({ date, kg: e.kg, note: e.note || '' }))
+      .sort((a, b) => a.date.localeCompare(b.date));
+  }
+
+  function wasWeightSkippedToday() {
+    return localStorage.getItem('gymtracker_weight_skip') === new Date().toISOString().slice(0, 10);
+  }
+
+  function skipWeightToday() {
+    localStorage.setItem('gymtracker_weight_skip', new Date().toISOString().slice(0, 10));
+  }
+
   return {
     saveSet, deleteSet, saveNote,
     savePlanVariantOverride, getPlanVariantOverride,
     saveSessionVariant, getSessionVariant, getActiveVariant,
     getHistory, getLastSession, getLastDayDates, getAllFlat,
+    saveWeight, getWeight, getWeightRange, getWeightWeeklyAvgs, getWeightAllFlat,
+    wasWeightSkippedToday, skipWeightToday,
   };
 })();

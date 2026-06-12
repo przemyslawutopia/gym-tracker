@@ -1,5 +1,11 @@
 const App = (() => {
-  const screens = ['day-select-screen', 'exercise-list-screen', 'exercise-log-screen'];
+  const screens = [
+    'home-screen',
+    'day-select-screen',
+    'exercise-list-screen',
+    'exercise-log-screen',
+    'weight-screen',
+  ];
 
   function show(id) {
     screens.forEach(s => {
@@ -9,6 +15,10 @@ const App = (() => {
 
   function navigateTo(screen, state = {}) {
     switch (screen) {
+      case 'home':
+        show('home-screen');
+        HomeScreen.render();
+        break;
       case 'day-select':
         show('day-select-screen');
         DaySelectScreen.render();
@@ -21,6 +31,10 @@ const App = (() => {
         show('exercise-log-screen');
         ExerciseLogScreen.render(state);
         break;
+      case 'weight':
+        show('weight-screen');
+        WeightLogScreen.render();
+        break;
     }
     window.scrollTo(0, 0);
   }
@@ -28,7 +42,7 @@ const App = (() => {
   function init() {
     KbToolbar.init();
     GlobalTimer.init();
-    navigateTo('day-select');
+    navigateTo('home');
   }
 
   return { navigateTo, init };
