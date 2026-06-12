@@ -118,8 +118,9 @@ const Storage = (() => {
     const data = load();
     const rows = [];
     Object.entries(data).forEach(([exerciseId, sessions]) => {
+      if (!Array.isArray(sessions)) return;
       sessions.forEach(session => {
-        session.sets.forEach((set, i) => {
+        (session.sets || []).forEach((set, i) => {
           if (!set) return;
           rows.push({
             date:            session.date,
