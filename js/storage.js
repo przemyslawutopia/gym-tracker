@@ -120,6 +120,7 @@ const Storage = (() => {
     Object.entries(data).forEach(([exerciseId, sessions]) => {
       if (!Array.isArray(sessions)) return;
       sessions.forEach(session => {
+        if (!session || !session.date) return;
         (session.sets || []).forEach((set, i) => {
           if (!set) return;
           rows.push({

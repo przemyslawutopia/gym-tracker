@@ -41,6 +41,7 @@ const DaySelectScreen = (() => {
             <li class="vs-option" id="sm-export">Export .xlsx</li>
             <li class="vs-option" id="sm-backup">Backup JSON</li>
             <li class="vs-option" id="sm-restore">Restore JSON</li>
+            <li class="vs-option" id="sm-debug" style="color:#aaa;font-size:0.85rem">Debug Info</li>
           </ul>
           <div class="vs-actions">
             <button class="vs-btn vs-cancel" id="sm-cancel">Cancel</button>
@@ -63,6 +64,7 @@ const DaySelectScreen = (() => {
     document.getElementById('sm-export').addEventListener('click', () => { closeSheet(sheet); exportToXlsx(); });
     document.getElementById('sm-backup').addEventListener('click', () => { closeSheet(sheet); backupJSON(); });
     document.getElementById('sm-restore').addEventListener('click', () => { closeSheet(sheet); restoreJSON(); });
+    document.getElementById('sm-debug').addEventListener('click', () => { closeSheet(sheet); debugStorage(); });
   }
 
   return { render };
