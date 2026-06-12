@@ -99,24 +99,19 @@ html, body {
   color: var(--gray);
 }
 
-/* ── Export ── */
-.screen-footer {
-  margin-top: 32px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-}
-
-.export-btn {
-  width: 100%;
-  padding: 14px;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  background: #fff;
-  font-size: 0.9rem;
-  cursor: pointer;
+/* ── Menu button ── */
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
   color: var(--gray);
+  cursor: pointer;
+  padding: 4px 2px;
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent;
 }
-.export-btn:active { background: var(--light-gray); }
+.menu-btn:active { color: var(--black); }
 
 /* ── Exercise List ── */
 .exercise-list {

@@ -1,3 +1,37 @@
+function backupJSON() {
+  const raw = localStorage.getItem('gymtracker_v1') || '{}';
+  const blob = new Blob([raw], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `gym_backup_${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function restoreJSON() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.json';
+  input.onchange = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = ev => {
+      try {
+        JSON.parse(ev.target.result);
+        localStorage.setItem('gymtracker_v1', ev.target.result);
+        alert('Restore complete. Reloading…');
+        location.reload();
+      } catch {
+        alert('Invalid backup file.');
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
 function exportToXlsx() {
   const rows = Storage.getAllFlat();
   if (rows.length === 0) {
