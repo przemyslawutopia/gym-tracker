@@ -1,0 +1,97 @@
+/* SLR × Jobs × Rubin — Dark */
+
+:root {
+  --black:      #EDECEA;
+  --gray:       #686866;
+  --light-gray: #181818;
+  --border:     #2C2C2A;
+  --radius:     6px;
+}
+
+html, body {
+  background: #0C0C0C;
+  color: #EDECEA;
+}
+
+/* Typography precision */
+.app-title        { letter-spacing: -0.8px; }
+.day-label        { letter-spacing: -0.3px; }
+.screen-header h2 { letter-spacing: -0.3px; }
+
+/* Day buttons */
+.day-btn:active { background: #222220; }
+
+/* Inputs */
+.inp {
+  background: #141414;
+  border-color: var(--border);
+  color: #EDECEA;
+}
+.notes-input {
+  background: #141414;
+  border-color: var(--border);
+  color: #EDECEA;
+}
+
+/* Log button (+ serii) */
+.log-btn          { background: #EDECEA; color: #0C0C0C; }
+.log-btn:active   { background: #C8C6C2; }
+
+/* Timer bar */
+#global-timer {
+  background: #0C0C0C;
+  border-top-color: var(--border);
+}
+.gt-btns button {
+  background: #181818;
+  border-color: var(--border);
+  color: #EDECEA;
+}
+.gt-btns button:active { background: #222220; }
+
+#gt-start        { background: #EDECEA !important; color: #0C0C0C !important; border-color: #EDECEA !important; }
+#gt-start:active { background: #C8C6C2 !important; }
+
+/* Keyboard toolbar */
+#kb-toolbar        { background: #181818; border-top-color: var(--border); }
+#kb-toolbar button { background: #2C2C2A; color: #EDECEA; }
+#kb-toolbar button:active { background: #3A3A38; }
+
+/* Bottom sheets */
+.vs-panel   { background: #141414; }
+.vs-handle  { background: #3A3A38; }
+.vs-option  { border-bottom-color: var(--border); }
+.vs-btn     { background: #181818; border-color: var(--border); color: #EDECEA; }
+.vs-btn:active { background: #222220; }
+.vs-cancel  { color: var(--gray); }
+.vs-plan    { background: #EDECEA !important; color: #0C0C0C !important; border-color: #EDECEA !important; }
+.vs-plan:active { background: #C8C6C2 !important; }
+
+/* Trend panel */
+.trend-panel { background: #141414; }
+
+/* Stopwatch buttons */
+.sw-btn       { background: #181818; border-color: var(--border); color: #EDECEA; }
+.sw-btn:active { background: #222220; }
+
+/* ── Animations ─────────────────────────────────────────── */
+
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+@keyframes set-in {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+.day-grid,
+.exercise-list,
+.log-body {
+  animation: screen-in 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.set-row {
+  animation: set-in 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}

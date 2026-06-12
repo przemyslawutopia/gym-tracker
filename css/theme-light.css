@@ -1,0 +1,63 @@
+/* SLR × Jobs × Rubin — Light */
+
+:root {
+  --black:      #0F0F0F;
+  --gray:       #8C8C8A;
+  --light-gray: #EDECEA;
+  --border:     #D4D2CE;
+  --radius:     6px;
+}
+
+html, body {
+  background: #F5F4F1;
+  color: #0F0F0F;
+}
+
+/* Typography precision */
+.app-title        { letter-spacing: -0.8px; }
+.day-label        { letter-spacing: -0.3px; }
+.screen-header h2 { letter-spacing: -0.3px; }
+
+/* Inputs */
+.inp {
+  background: #F5F4F1;
+  border-color: var(--border);
+}
+.notes-input {
+  background: #F5F4F1;
+}
+
+/* Timer bar */
+#global-timer {
+  background: #EFEDE9;
+  border-top-color: var(--border);
+}
+.gt-btns button {
+  background: #F5F4F1;
+}
+
+/* Bottom sheets */
+.vs-panel { background: #F5F4F1; }
+.vs-btn   { background: #EDECEA; }
+
+/* ── Animations ─────────────────────────────────────────── */
+
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+@keyframes set-in {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+.day-grid,
+.exercise-list,
+.log-body {
+  animation: screen-in 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.set-row {
+  animation: set-in 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
