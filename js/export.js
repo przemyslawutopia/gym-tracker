@@ -32,23 +32,6 @@ function restoreJSON() {
   input.click();
 }
 
-function debugStorage() {
-  const raw = JSON.parse(localStorage.getItem('gymtracker_v1') || '{}');
-  const keys = Object.keys(raw);
-  const rows = Storage.getAllFlat();
-  const days = [...new Set(rows.map(r => `${r.day}(${r.date})`))];
-  let detail = '';
-  keys.forEach(k => {
-    const val = raw[k];
-    if (!Array.isArray(val)) { detail += `\n${k}: NOT ARRAY (${typeof val})`; return; }
-    val.forEach((s, i) => {
-      if (!s) { detail += `\n${k}[${i}]: NULL`; return; }
-      const setsOk = Array.isArray(s.sets) ? s.sets.length : `NOT ARRAY(${typeof s.sets})`;
-      detail += `\n${k}[${i}]: ${s.day} ${s.date} sets=${setsOk}`;
-    });
-  });
-  alert(`Keys: ${keys.length}\nRows: ${rows.length}\nDays: ${days.join(', ') || 'none'}${detail}`);
-}
 
 function exportToXlsx() {
   const rows = Storage.getAllFlat();
