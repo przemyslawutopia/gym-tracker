@@ -602,6 +602,21 @@ html, body {
   max-width: 100%;
 }
 
+.gt-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+}
+
+#gt-session {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--gray);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 2px;
+}
+
 #gt-display {
   font-size: 1.6rem;
   font-weight: 700;
