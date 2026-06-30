@@ -151,7 +151,7 @@ const ExerciseLogScreen = (() => {
         <div class="notes-section">
           ${exercises.map(ex => `
             <label class="notes-label">${ex.name} notes
-              <textarea class="notes-input" data-exid="${ex.id}" rows="2" placeholder="Optional notes…">${getNoteForToday(ex.id, day)}</textarea>
+              <textarea class="notes-input" data-exid="${ex.id}" rows="1" placeholder="Optional notes…">${getNoteForToday(ex.id, day)}</textarea>
             </label>
           `).join('')}
         </div>
@@ -172,8 +172,10 @@ const ExerciseLogScreen = (() => {
     const allInputs = Array.from(container.querySelectorAll('.inp-weight, .inp-reps, .inp-rir'));
     KbToolbar.attach(allInputs);
 
-    // Notes autosave
+    // Notes autosave + auto-grow
     container.querySelectorAll('.notes-input').forEach(ta => {
+      autoGrowTextarea(ta);
+      ta.addEventListener('input', () => autoGrowTextarea(ta));
       ta.addEventListener('blur', () => {
         Storage.saveNote(today, day, ta.dataset.exid, ta.value);
       });
@@ -183,6 +185,11 @@ const ExerciseLogScreen = (() => {
     document.getElementById('back-to-list').addEventListener('click', () => {
       App.navigateTo('exercise-list', { day });
     });
+  }
+
+  function autoGrowTextarea(ta) {
+    ta.style.height = 'auto';
+    ta.style.height = ta.scrollHeight + 'px';
   }
 
   function getNoteForToday(exId, day) {

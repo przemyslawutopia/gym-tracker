@@ -545,7 +545,9 @@ html, body {
   padding: 10px;
   font-family: var(--font);
   font-size: 0.9rem;
-  resize: vertical;
+  line-height: 1.4;
+  resize: none;
+  overflow: hidden;
   background: #fff;
 }
 .notes-input:focus { outline: none; border-color: var(--black); }
