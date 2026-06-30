@@ -713,6 +713,19 @@ html, body {
   line-height: 1;
 }
 
+.cs-remove-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--gray);
+  padding: 4px 6px;
+  cursor: pointer;
+  line-height: 1;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.cs-remove-btn:active { color: #c00; }
+
 .cs-footer {
   position: sticky;
   bottom: calc(var(--timer-bar-h) + 12px);
@@ -746,12 +759,14 @@ html, body {
   margin: 0 auto;
 }
 
-.picker-header {
+.picker-bottom {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 16px;
-  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--border);
+  background: #fff;
   flex-shrink: 0;
 }
 

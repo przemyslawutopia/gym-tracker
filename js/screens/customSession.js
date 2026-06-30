@@ -54,12 +54,12 @@ const CustomSessionScreen = (() => {
     const all = getAllExercises();
 
     pickerEl.innerHTML = `
-      <div class="picker-header">
+      <ul class="picker-list"></ul>
+      <div class="picker-bottom">
         <input class="picker-search" type="text" placeholder="Szukaj…"
           autocomplete="off" autocorrect="off" spellcheck="false">
         <button class="picker-cancel">Anuluj</button>
       </div>
-      <ul class="picker-list"></ul>
     `;
 
     pickerEl.classList.remove('hidden');
@@ -91,8 +91,10 @@ const CustomSessionScreen = (() => {
 
     renderList('');
     searchInput.addEventListener('input', () => renderList(searchInput.value));
-    pickerEl.querySelector('.picker-cancel').addEventListener('click', closePicker);
-    setTimeout(() => searchInput.focus(), 50);
+    pickerEl.querySelector('.picker-cancel').addEventListener('click', () => {
+      closePicker();
+      searchInput.blur();
+    });
   }
 
   function closePicker() {
@@ -108,6 +110,13 @@ const CustomSessionScreen = (() => {
       saveTodaySession(exercises);
       markUsed(ex.id);
     }
+    render();
+  }
+
+  function removeExercise(idx) {
+    const exercises = loadTodaySession();
+    exercises.splice(idx, 1);
+    saveTodaySession(exercises);
     render();
   }
 
@@ -134,6 +143,7 @@ const CustomSessionScreen = (() => {
                     <span class="cs-item-name">${ex.name}</span>
                     <span class="cs-item-meta">
                       ${setCount > 0 ? `<span class="cs-item-sets">${setCount} sets</span>` : ''}
+                      <button class="cs-remove-btn" data-idx="${i}">×</button>
                       <span class="cs-item-chevron">›</span>
                     </span>
                   </li>`;
@@ -150,6 +160,13 @@ const CustomSessionScreen = (() => {
       App.navigateTo('day-select'));
 
     document.getElementById('cs-add').addEventListener('click', openPicker);
+
+    container.querySelectorAll('.cs-remove-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        removeExercise(parseInt(btn.dataset.idx));
+      });
+    });
 
     container.querySelectorAll('.cs-item').forEach(item => {
       item.addEventListener('click', () => {
