@@ -31,9 +31,8 @@ Home
 | `js/plan.js` | Hardcoded plan A/B/C/D + słownik VARIANTS |
 | `js/storage.js` | Wrapper localStorage (treningi + waga) |
 | `js/export.js` | Export .xlsx (zakładki Workouts + Weight) |
-| `js/globalTimer.js` | Timer całego treningu |
-| `js/stopwatch.js` | Stopwatch między seriami |
-| `js/kbToolbar.js` | Toolbar klawiatury mobilnej |
+| `js/globalTimer.js` | Pasek na dole: timer serii (Start/Stop/Reset, powiększa się gdy aktywny) + ambient "gt-session" zegar całego pobytu na siłce (startuje przy pierwszym Start, liczy w tle, nie resetuje się ze Stop/Reset, znika dopiero gdy appka zostanie zabita z pamięci — brak persystencji) |
+| `js/stopwatch.js` | Stopwatch między seriami (singleton, używany przez globalTimer.js) |
 | `js/screens/home.js` | Ekran główny, popup wagi, menu ··· |
 | `js/screens/daySelect.js` | Wybór dnia A/B/C/D |
 | `js/screens/exerciseList.js` | Lista ćwiczeń danego dnia |
@@ -42,6 +41,13 @@ Home
 | `css/style.css` | Base styles |
 | `css/theme-light.css` | Aktywny theme |
 | `css/theme-dark.css` | Gotowy, nieaktywny |
+
+## Zrobione (ostatnia sesja, 2026-06-30)
+
+4. Textarea notatek auto-grow (rośnie z tekstem, `rows="1"` + JS resize)
+5. KbToolbar usunięty całkowicie (plik, wywołania, style — był tylko "Done", uznany za zbędny)
+6. Timer serii (`#gt-display`) powiększa się gdy aktywny (1.6rem → 2.2rem)
+6b. Ambient "gt-session" zegar całego pobytu na siłce — patrz opis przy `js/globalTimer.js` w tabeli Pliki
 
 ## Todo — zaplanowane, czekają na implementację
 
@@ -52,13 +58,8 @@ Grupuj implementację tak jak poniżej (te same funkcje dotykasz raz):
 2. Uwagi z ostatniego treningu — "ostatnio: [tekst]" nad polem notatek (z tego samego wariantu)
 3. Odwrotna kolejność historii — `.reverse()` przy wyświetlaniu trend panelu
 
-**Grupa B** (CSS/drobnostki — zrób razem):
-4. Textarea auto-grow — rośnie z tekstem, nie sztywne `rows`
-5. KbToolbar — usunąć nawigację między polami, zostaje tylko "Done"
-
 **Osobno:**
-6. Timer większy gdy tyka — większy font `#gt-display` tylko gdy aktywny
-7. Timer całego treningu + liczba serii w headerze exercise-log jako "12 serii · 1h 23m"
+7. Liczba serii w headerze exercise-log jako "12 serii · 1h 23m" (czas z `#gt-session`, patrz wyżej)
 
 ## Backlog (bez decyzji, nie implementuj bez pytania)
 
