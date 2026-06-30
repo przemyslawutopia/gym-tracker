@@ -168,10 +168,6 @@ const ExerciseLogScreen = (() => {
       attachFieldChaining(ex.id);
     });
 
-    // Attach keyboard toolbar to all numeric inputs across all blocks
-    const allInputs = Array.from(container.querySelectorAll('.inp-weight, .inp-reps, .inp-rir'));
-    KbToolbar.attach(allInputs);
-
     // Notes autosave + auto-grow
     container.querySelectorAll('.notes-input').forEach(ta => {
       autoGrowTextarea(ta);

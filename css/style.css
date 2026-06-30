@@ -636,36 +636,6 @@ html, body {
 
 #gt-reset { color: var(--gray); }
 
-/* ── Keyboard toolbar ── */
-#kb-toolbar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 999;
-  background: #d1d3d9;
-  border-top: 1px solid #b0b3ba;
-  display: flex;
-  justify-content: flex-end;
-  gap: 0;
-  padding: 6px 8px;
-}
-
-#kb-toolbar button {
-  background: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 7px 18px;
-  font-size: 0.95rem;
-  font-family: var(--font);
-  cursor: pointer;
-  margin-left: 8px;
-  color: var(--black);
-  font-weight: 500;
-  -webkit-tap-highlight-color: transparent;
-}
-#kb-toolbar button:active { background: #e8e8e8; }
-
 /* ── Number input spinner hide ── */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }

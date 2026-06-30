@@ -40,7 +40,6 @@ const App = (() => {
   }
 
   function init() {
-    KbToolbar.init();
     GlobalTimer.init();
     navigateTo('home');
   }

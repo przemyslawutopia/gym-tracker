@@ -52,11 +52,6 @@ html, body {
 #gt-start        { background: #EDECEA !important; color: #0C0C0C !important; border-color: #EDECEA !important; }
 #gt-start:active { background: #C8C6C2 !important; }
 
-/* Keyboard toolbar */
-#kb-toolbar        { background: #181818; border-top-color: var(--border); }
-#kb-toolbar button { background: #2C2C2A; color: #EDECEA; }
-#kb-toolbar button:active { background: #3A3A38; }
-
 /* Bottom sheets */
 .vs-panel   { background: #141414; }
 .vs-handle  { background: #3A3A38; }
