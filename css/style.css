@@ -608,6 +608,10 @@ html, body {
   letter-spacing: -0.5px;
   font-variant-numeric: tabular-nums;
   min-width: 64px;
+  transition: font-size 0.15s ease;
+}
+#gt-display.active {
+  font-size: 2.2rem;
 }
 
 .gt-btns {

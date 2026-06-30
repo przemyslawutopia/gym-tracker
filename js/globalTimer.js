@@ -9,9 +9,11 @@ const GlobalTimer = (() => {
       if (Stopwatch.isRunning()) {
         startBtn.classList.add('hidden');
         stopBtn.classList.remove('hidden');
+        display.classList.add('active');
       } else {
         startBtn.classList.remove('hidden');
         stopBtn.classList.add('hidden');
+        display.classList.remove('active');
       }
     }
 
