@@ -179,7 +179,11 @@ const ExerciseLogScreen = (() => {
 
 
     document.getElementById('back-to-list').addEventListener('click', () => {
-      App.navigateTo('exercise-list', { day });
+      if (state.returnTo === 'custom-session') {
+        App.navigateTo('custom-session');
+      } else {
+        App.navigateTo('exercise-list', { day });
+      }
     });
   }
 

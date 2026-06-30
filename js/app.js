@@ -2,6 +2,7 @@ const App = (() => {
   const screens = [
     'home-screen',
     'day-select-screen',
+    'custom-session-screen',
     'exercise-list-screen',
     'exercise-log-screen',
     'weight-screen',
@@ -22,6 +23,10 @@ const App = (() => {
       case 'day-select':
         show('day-select-screen');
         DaySelectScreen.render();
+        break;
+      case 'custom-session':
+        show('custom-session-screen');
+        CustomSessionScreen.render();
         break;
       case 'exercise-list':
         show('exercise-list-screen');

@@ -20,13 +20,20 @@ const DaySelectScreen = (() => {
             <span class="day-last">Ostatnio: ${fmt(lastDates[day])}</span>
           </button>
         `).join('')}
+        <button class="day-btn day-btn--custom" data-custom>
+          <span class="day-label">Custom</span>
+          <span class="day-last">Ostatnio: ${fmt(lastDates['Custom'])}</span>
+        </button>
       </div>
     `;
 
-    container.querySelectorAll('.day-btn').forEach(btn => {
+    container.querySelectorAll('.day-btn:not([data-custom])').forEach(btn => {
       btn.addEventListener('click', () =>
         App.navigateTo('exercise-list', { day: btn.dataset.day }));
     });
+
+    container.querySelector('[data-custom]').addEventListener('click', () =>
+      App.navigateTo('custom-session'));
 
     document.getElementById('ds-back').addEventListener('click', () =>
       App.navigateTo('home'));

@@ -105,10 +105,13 @@ const Storage = (() => {
 
   function getLastDayDates() {
     const data = load();
-    const result = { A: null, B: null, C: null, D: null };
+    const result = { A: null, B: null, C: null, D: null, Custom: null };
     Object.values(data).forEach(sessions => {
+      if (!Array.isArray(sessions)) return;
       sessions.forEach(s => {
-        if (!result[s.day] || s.date > result[s.day]) result[s.day] = s.date;
+        if (s.day in result && (!result[s.day] || s.date > result[s.day])) {
+          result[s.day] = s.date;
+        }
       });
     });
     return result;

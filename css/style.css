@@ -655,6 +655,166 @@ html, body {
 
 #gt-reset { color: var(--gray); }
 
+/* ── Custom session ── */
+.day-btn--custom {
+  grid-column: 1 / -1;
+  border: 1.5px dashed var(--border);
+  background: #fff;
+}
+.day-btn--custom:active { background: var(--light-gray); }
+
+.cs-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cs-empty {
+  text-align: center;
+  color: var(--gray);
+  font-size: 0.9rem;
+  margin-top: 48px;
+}
+
+.cs-list {
+  list-style: none;
+}
+
+.cs-item {
+  display: flex;
+  align-items: center;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  gap: 8px;
+  -webkit-tap-highlight-color: transparent;
+}
+.cs-item:active { background: var(--light-gray); }
+
+.cs-item-name {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.cs-item-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-item-sets {
+  font-size: 0.82rem;
+  color: var(--gray);
+}
+
+.cs-item-chevron {
+  font-size: 1.2rem;
+  color: var(--gray);
+  line-height: 1;
+}
+
+.cs-footer {
+  position: sticky;
+  bottom: calc(var(--timer-bar-h) + 12px);
+  padding: 12px 0 0;
+  background: #fff;
+}
+
+.cs-add-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--black);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: var(--font);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.cs-add-btn:active { background: #444; }
+
+/* ── Exercise picker overlay ── */
+.picker-overlay {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.picker-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.picker-search {
+  flex: 1;
+  font-size: 1rem;
+  font-family: var(--font);
+  padding: 9px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--light-gray);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.picker-search:focus { outline: none; border-color: var(--black); background: #fff; }
+
+.picker-cancel {
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  font-family: var(--font);
+  color: var(--gray);
+  cursor: pointer;
+  padding: 8px 0 8px 4px;
+  flex-shrink: 0;
+}
+
+.picker-list {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.picker-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 1rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.picker-item:active { background: var(--light-gray); }
+
+.picker-item--added {
+  color: var(--gray);
+  cursor: default;
+}
+
+.picker-check {
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.picker-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
 /* ── Number input spinner hide ── */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
