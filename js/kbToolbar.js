@@ -6,18 +6,9 @@ const KbToolbar = (() => {
     bar.id = 'kb-toolbar';
     bar.style.display = 'none';
     bar.innerHTML = `
-      <button id="kb-next">Next →</button>
       <button id="kb-done">Done</button>
     `;
     document.body.appendChild(bar);
-
-    document.getElementById('kb-next').addEventListener('mousedown', e => {
-      e.preventDefault();
-      const idx = allFields.indexOf(currentField);
-      const next = allFields[idx + 1];
-      if (next) { next.focus(); next.select(); }
-      else { currentField.blur(); }
-    });
 
     document.getElementById('kb-done').addEventListener('mousedown', e => {
       e.preventDefault();
@@ -42,9 +33,6 @@ const KbToolbar = (() => {
     fields.forEach(inp => {
       inp.addEventListener('focus', () => {
         currentField = inp;
-        // Update Next label when on last field
-        document.getElementById('kb-next').textContent =
-          allFields.indexOf(inp) === allFields.length - 1 ? 'Done' : 'Next →';
         bar.style.display = 'flex';
         reposition();
       });
